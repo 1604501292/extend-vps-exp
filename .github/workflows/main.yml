@@ -23,3 +23,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: recording.webm
+       - name: Send PushPlus Notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            TITLE="VPS自动续期成功🎉"
+            CONTENT="Xserver VPS 自动续期脚本运行成功。"
+          else
+            TITLE="VPS自动续期失败❌"
+            CONTENT="Xserver VPS 自动续期脚本运行失败，请去 GitHub Actions 查看具体报错日志。"
+          fi
+          curl -s "http://www.pushplus.plus/send?token=${{ secrets.PUSHPLUS_TOKEN }}&title=${TITLE}&content=${CONTENT}"
