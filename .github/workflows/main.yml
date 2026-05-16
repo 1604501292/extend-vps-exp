@@ -23,7 +23,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: recording.webm
-       - name: Send PushPlus Notification
+      - name: Send PushPlus Notification
         if: always()
         run: |
           if [ "${{ job.status }}" == "success" ]; then
