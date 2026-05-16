@@ -33,4 +33,7 @@ jobs:
             TITLE="VPS自动续期失败❌"
             CONTENT="Xserver VPS 自动续期脚本运行失败，请去 GitHub Actions 查看具体报错日志。"
           fi
-          curl -s "http://www.pushplus.plus/send?token=${{ secrets.PUSHPLUS_TOKEN }}&title=${TITLE}&content=${CONTENT}"
+          curl -s -X POST "https://www.pushplus.plus/send" \
+            -d "token=${{ secrets.PUSHPLUS_TOKEN }}" \
+            --data-urlencode "title=${TITLE}" \
+            --data-urlencode "content=${CONTENT}"
