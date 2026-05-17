@@ -1,8 +1,7 @@
 on:
   schedule:
-    - cron: '0 7 * * *'
-  push:
-  workflow_dispatch:
+    - cron: '0 1 * * *'  # 建议改成 1，对应北京时间早上 9 点
+  workflow_dispatch:     # 保留这个，方便以后你随时手动点按钮测试
 
 jobs:
   job:
